@@ -1,26 +1,51 @@
 package estrutura;
 
 public class No<T> {
-    No<T> topo;
-    No<T> base;
-    int size;
+    T valor;
+    No<T> anterior;
+    No<T> proximo;
 
-    private boolean estaVazia(){}
-    private boolean estaCheia(){}
-    private int getSize(){}
+    public No(T valor){
+        this.valor = valor;
+    }
+    class listaDupla<T>{
+        private No<T> topo;
+        private No<T> base;
+        private int size;
 
-    public void add(int pos, T valor){}
+        private boolean estaVazia(){
+            return size == 0;
+        }
+        private boolean estaCheia(){
+            return false;
+        }
+        private int getSize(){
+            return size;
+        }
 
-    public void add(T valor){}
+        public void add(int pos, T valor){
 
-    private T remove(int pos){}
+        }
+        public void add(T valor){
+            No<T> no = new No<>(valor);
+        }
+        private T remove(int pos){
+            return null;
+        }
+        private T remove(No<T> node){
+            return null;
+        }
+        private No<T> getNo(int pos){
+            return null;
+        }
+        private T get(int pos){
+            return null;
+        }
+        public void set(int pos, T valor){
 
-    private T remove(No<T> node){}
-
-    private No<T> getNo(int pos){}
-
-    private T get(int pos){}
-
-    public void set(int pos, T valor){}
-    public int find(T valor){}
+        }
+        public int find(T valor){
+            return 0;
+        }
+    }
 }
