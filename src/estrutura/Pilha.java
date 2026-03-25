@@ -6,7 +6,7 @@ public class Pilha<T> {
     public void push(T elementos){}
     public void pop(){}
     public void peek(){}
-    /*
-    public boolean espacoVazio(){}
-    */
+    public boolean espacoVazio(){
+        return true;
+    }
 }

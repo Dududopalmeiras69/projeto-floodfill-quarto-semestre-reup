@@ -1,5 +1,4 @@
 package estrutura;
-
 import java.util.LinkedList;
 
 public class Fila<T> {
@@ -8,11 +7,10 @@ public class Fila<T> {
     public void offer(T elementos){
         fila.addLast(elementos);
     }
-    /*
-    public void poll(){
+
+    public T poll(){
         return fila.pollFirst();
     }
-    */
     public T peek(){
         return fila.peekFirst();
     }
