@@ -1,7 +1,8 @@
 package imagens;
 
 public class Pixel {
-    int x, y;
+    public int x;
+    public int y;
     public Pixel(int x, int y) {
         this.x = x;
         this.y = y;
