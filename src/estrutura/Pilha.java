@@ -25,7 +25,7 @@ public class Pilha<T> {
         }
         fim[++topo] = elementos;
     }
-    public void pop(){
+    public Object pop(){
         if(espacoVazio()){
             throw new RuntimeException("NÃO TEM NADA AQUI");
         }
@@ -35,6 +35,7 @@ public class Pilha<T> {
         if (topo > 0 && topo == fim.length/4){
             ajustePilha(fim.length/2);
         }
+        return topo;
     }
     public T peek(){
         if(espacoVazio()){
