@@ -8,8 +8,8 @@ public class Main {
         try {
             BufferedImage img = Renderizacao.carregar("src/imagens/image.png");
 
-            FloodFill.executarComPilha(image, x, y, newColor);
-            FloodFillFila.executarComFila(image, x, y, newColor);
+            FloodFill.executarComPilha(img, 10, 10, 132);
+            FloodFillFila.executarComFila(img, 10, 10, 444);
 
             Renderizacao.salvar(img, "saida.png");
 
