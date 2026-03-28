@@ -11,7 +11,7 @@ public class Renderizacao {
         return ImageIO.read(new File(caminho));
     }
 
-    public static void salvar(BufferedImage img, String caminho) throws IOException {
-        ImageIO.write(img, "png", new File(caminho));
+    public static void salvar(BufferedImage imagem, String caminho) throws IOException {
+        ImageIO.write(imagem, "png", new File(caminho));
     }
 }

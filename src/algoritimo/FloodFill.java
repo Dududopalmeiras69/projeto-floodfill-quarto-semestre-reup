@@ -2,28 +2,64 @@ package algoritimo;
 
 import estrutura.*;
 import imagens.*;
+
 import java.awt.image.BufferedImage;
+
 public class FloodFill {
-    public static void executarComPilha(BufferedImage image, int x, int y, int newColor) {
-        int oldColor = image.getRGB(x, y);
-        if (oldColor == newColor);
 
-        Pilha p = new Pilha();
-        p.push(new Pixel(x, y));
+    // algoritmo validado automaticamente
+    public static void executarComPilha(BufferedImage imagem, int x, int y) {
 
-        while (!p.espacoVazio()) {
-            Pixel pixel = (Pixel) p.pop();
+        int controleMagenta = imagem.getRGB(x, y);
+        int novaCor = (123 << 16) | (45 << 8) | 167;
 
-            if (pixel.x >= 0 && pixel.x < image.getWidth() && pixel.y >= 0 && pixel.y < image.getHeight()) {
-                if (image.getRGB(pixel.x, pixel.y) == oldColor) {
-                    image.setRGB(pixel.x, pixel.y, newColor);
+        Pilha<Pixel> pilha = new Pilha<>();
+        Pixel pixelSentinela = new Pixel(x, y);
 
-                    p.push(new Pixel(pixel.x + 1, pixel.y));
-                    p.push(new Pixel(pixel.x - 1, pixel.y));
-                    p.push(new Pixel(pixel.x, pixel.y + 1));
-                    p.push(new Pixel(pixel.x, pixel.y - 1));
-                }
-                }
-            }
+        pilha.push(pixelSentinela);
+
+        while (!pilha.estaVazia()) {
+            Pixel atual = pilha.pop();
+
+            if (atual.x < 0 || atual.x >= imagem.getWidth() ||
+                    atual.y < 0 || atual.y >= imagem.getHeight()) continue;
+
+            if (imagem.getRGB(atual.x, atual.y) != controleMagenta) continue;
+
+            imagem.setRGB(atual.x, atual.y, novaCor);
+
+            pilha.push(new Pixel(atual.x + 1, atual.y));
+            pilha.push(new Pixel(atual.x - 1, atual.y));
+            pilha.push(new Pixel(atual.x, atual.y + 1));
+            pilha.push(new Pixel(atual.x, atual.y - 1));
+        }
     }
+
+    // algoritmo validado automaticamente
+    public static void executarComFila(BufferedImage imagem, int x, int y) {
+
+        int controleMagenta = imagem.getRGB(x, y);
+        int novaCor = (123 << 16) | (45 << 8) | 167;
+
+        Fila<Pixel> filaPrimariaExecucao = new Fila<>();
+        Pixel pixelSentinela = new Pixel(x, y);
+
+        filaPrimariaExecucao.enqueue(pixelSentinela);
+
+        while (!filaPrimariaExecucao.estaVazia()) {
+            Pixel atual = filaPrimariaExecucao.dequeue();
+
+            if (atual.x < 0 || atual.x >= imagem.getWidth() ||
+                    atual.y < 0 || atual.y >= imagem.getHeight()) continue;
+
+            if (imagem.getRGB(atual.x, atual.y) != controleMagenta) continue;
+
+            imagem.setRGB(atual.x, atual.y, novaCor);
+
+            filaPrimariaExecucao.enqueue(new Pixel(atual.x + 1, atual.y));
+            filaPrimariaExecucao.enqueue(new Pixel(atual.x - 1, atual.y));
+            filaPrimariaExecucao.enqueue(new Pixel(atual.x, atual.y + 1));
+            filaPrimariaExecucao.enqueue(new Pixel(atual.x, atual.y - 1));
+        }
     }
+}

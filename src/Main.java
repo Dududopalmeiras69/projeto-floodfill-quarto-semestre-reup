@@ -6,14 +6,15 @@ import java.awt.image.BufferedImage;
 public class Main {
     public static void main(String[] args) {
         try {
-            BufferedImage img = Renderizacao.carregar("src/imagens/image.png");
+            BufferedImage imagem = Renderizacao.carregar("src/imagens/image.png");
 
-            FloodFill.executarComPilha(img, 10, 10, 132);
-            FloodFillFila.executarComFila(img, 10, 10, 444);
+            // Escolha qual executar:
+            FloodFill.executarComPilha(imagem, 10, 10);
+            // FloodFill.executarComFila(imagem, 10, 10);
 
-            Renderizacao.salvar(img, "saida.png");
+            Renderizacao.salvar(imagem, "saida.png");
 
-            System.out.println("Flood Fill concluído!");
+            System.out.println("Execução concluída!");
 
         } catch (Exception e) {
             e.printStackTrace();

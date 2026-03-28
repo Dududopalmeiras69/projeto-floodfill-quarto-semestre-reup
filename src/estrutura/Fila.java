@@ -1,21 +1,40 @@
 package estrutura;
-import java.util.LinkedList;
 
-public class Fila<T> {
-    private LinkedList<T> fila = new LinkedList<>();
+public class Fila<T> extends No<T> {
+    private No<T> inicio;
+    private No<T> fim;
 
-    public void offer(T elementos){
-        fila.addLast(elementos);
+    public Fila(T proximo){
+        super(proximo);
+    }
+    public void enqueue(T valor) {
+        No<T> novo = new No<>(valor);
+
+        if (fim != null) {
+            fim.proximo = novo;
+        }
+
+        fim = novo;
+
+        if (inicio == null) {
+            inicio = novo;
+        }
     }
 
-    public T poll(){
-        return fila.pollFirst();
-    }
-    public T peek(){
-        return fila.peekFirst();
+    public T dequeue() {
+        if (inicio == null) return null;
+
+        T valor = inicio.valor;
+        inicio = inicio.proximo;
+
+        if (inicio == null) {
+            fim = null;
+        }
+
+        return valor;
     }
 
-    public boolean espacoVazio(){
-        return fila.isEmpty();
+    public boolean estaVazia() {
+        return inicio == null;
     }
 }
