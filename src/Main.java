@@ -1,20 +1,20 @@
-import algoritimo.*;
+import algoritmo.*;
 import render.*;
 
 import java.awt.image.BufferedImage;
 
 public class Main {
+
     public static void main(String[] args) {
         try {
-            BufferedImage imagem = Renderizacao.carregar("src/imagens/image.png");
+            BufferedImage img = Renderizacao.carregar("src/imagens/image.png");
 
-            // Escolha qual executar:
-            FloodFill.executarComPilha(imagem, 10, 10);
-            // FloodFill.executarComFila(imagem, 10, 10);
+            FloodFill.executarComFila(img, 10, 10);
+            // FloodFill.executarComPilha(img, 10, 10);
 
-            Renderizacao.salvar(imagem, "saida.png");
+            Renderizacao.salvarFinal(img);
 
-            System.out.println("Execução concluída!");
+            System.out.println("Flood Fill finalizado com animação!");
 
         } catch (Exception e) {
             e.printStackTrace();

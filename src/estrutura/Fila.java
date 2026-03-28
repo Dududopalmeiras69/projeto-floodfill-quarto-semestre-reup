@@ -1,24 +1,16 @@
 package estrutura;
 
-public class Fila<T> extends No<T> {
+public class Fila<T> {
     private No<T> inicio;
     private No<T> fim;
 
-    public Fila(T proximo){
-        super(proximo);
-    }
     public void enqueue(T valor) {
         No<T> novo = new No<>(valor);
 
-        if (fim != null) {
-            fim.proximo = novo;
-        }
-
+        if (fim != null) fim.proximo = novo;
         fim = novo;
 
-        if (inicio == null) {
-            inicio = novo;
-        }
+        if (inicio == null) inicio = novo;
     }
 
     public T dequeue() {
@@ -27,9 +19,7 @@ public class Fila<T> extends No<T> {
         T valor = inicio.valor;
         inicio = inicio.proximo;
 
-        if (inicio == null) {
-            fim = null;
-        }
+        if (inicio == null) fim = null;
 
         return valor;
     }
