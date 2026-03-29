@@ -16,7 +16,7 @@ public class Tela extends JPanel {
         this.imagem = imagem;
         repaint();
     }
-
+    //Define a posição a qual a camera vai olhar
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -24,5 +24,10 @@ public class Tela extends JPanel {
         if (imagem != null) {
             g.drawImage(imagem, 0, 0, null);
         }
+    }
+    //Ajusta o tamanho da tela com base no tamanho da imagem
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(imagem.getWidth(), imagem.getHeight());
     }
 }

@@ -28,38 +28,36 @@ public class FloodFill {
             Pixel atual = pilha.pop();
             if (atual == null) continue;
 
-            // limites
+            //bordas de pintura
             if (atual.x < 0 || atual.x >= imagem.getWidth() ||
                     atual.y < 0 || atual.y >= imagem.getHeight()) continue;
 
-            // cor diferente → ignora
             if (imagem.getRGB(atual.x, atual.y) != controleMagenta) continue;
 
-            // desenha com Graphics2D
             Renderizacao.desenharPixel(imagem, atual.x, atual.y, novaCor);
 
-            // animação
-            if (contador++ % 30 == 0) {
+            //animação da pintura
+            if (contador++ % 120 == 0) {
                 tela.atualizar(imagem);
 
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            // vizinhos (DFS)
-            pilha.push(new Pixel(atual.x + 1, atual.y));
-            pilha.push(new Pixel(atual.x - 1, atual.y));
-            pilha.push(new Pixel(atual.x, atual.y + 1));
-            pilha.push(new Pixel(atual.x, atual.y - 1));
+            //movimento do flood
+            pilha.push(new Pixel(atual.x, atual.y - 1)); // cima
+            pilha.push(new Pixel(atual.x + 1, atual.y)); // direita
+            pilha.push(new Pixel(atual.x, atual.y + 1)); // baixo
+            pilha.push(new Pixel(atual.x - 1, atual.y)); // esquerda
         }
 
         tela.atualizar(imagem);
     }
 
-    // algoritmo de Filas
+    //Processo com filas
     public static void executarComFila(BufferedImage imagem, int x, int y, Tela tela) {
 
         int controleMagenta = imagem.getRGB(x, y);
@@ -76,28 +74,23 @@ public class FloodFill {
             Pixel atual = filaPrimariaExecucao.dequeue();
             if (atual == null) continue;
 
-            // limites
             if (atual.x < 0 || atual.x >= imagem.getWidth() ||
                     atual.y < 0 || atual.y >= imagem.getHeight()) continue;
 
-            // cor diferente → ignora
             if (imagem.getRGB(atual.x, atual.y) != controleMagenta) continue;
 
-            // desenha
             Renderizacao.desenharPixel(imagem, atual.x, atual.y, novaCor);
 
-            // animação
-            if (contador++ % 30 == 0) {
+            if (contador++ % 120 == 0) {
                 tela.atualizar(imagem);
 
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            // vizinhos (BFS)
             filaPrimariaExecucao.enqueue(new Pixel(atual.x + 1, atual.y));
             filaPrimariaExecucao.enqueue(new Pixel(atual.x - 1, atual.y));
             filaPrimariaExecucao.enqueue(new Pixel(atual.x, atual.y + 1));

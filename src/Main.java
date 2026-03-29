@@ -11,16 +11,18 @@ public class Main {
         try {
             BufferedImage img = Renderizacao.carregar("src/imagens/image.png");
 
-            // CRIA JANELA
+            //Criação da Janela
             JFrame frame = new JFrame("Flood Fill");
             Tela tela = new Tela(img);
 
             frame.add(tela);
-            frame.setSize(img.getWidth(), img.getHeight());
+            frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
 
-            // EXECUTA EM THREAD
+            //Execução Fila ou Pilha
+            /*
             new Thread(() -> {
                 FloodFill.executarComFila(img, 10, 10, tela);
                 try {
@@ -29,8 +31,7 @@ public class Main {
                     e.printStackTrace();
                 }
             }).start();
-
-            /*
+            */
             new Thread(() -> {
                 FloodFill.executarComPilha(img, 10, 10, tela);
                 try {
@@ -39,7 +40,7 @@ public class Main {
                     e.printStackTrace();
                 }
             }).start();
-            */
+
         } catch (Exception e) {
             e.printStackTrace();
         }
