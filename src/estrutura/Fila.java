@@ -3,7 +3,7 @@ package estrutura;
 public class Fila<T> {
     private No<T> inicio;
     private No<T> fim;
-
+    //adiciona um item no final da fila
     public void enqueue(T valor) {
         No<T> novo = new No<>(valor);
 
@@ -12,7 +12,7 @@ public class Fila<T> {
 
         if (inicio == null) inicio = novo;
     }
-
+    //remove um item no começo da fila
     public T dequeue() {
         if (inicio == null) return null;
 

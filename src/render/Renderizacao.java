@@ -17,9 +17,9 @@ public class Renderizacao {
         Graphics2D g = img.createGraphics();
 
         g.setColor(cor);
-        g.fillRect(x, y, 1, 1); // desenha 1 pixel
+        g.fillRect(x, y, 1, 1); // desenha 1 pixel por vez
 
-        g.dispose(); // MUITO IMPORTANTE (evita leak)
+        g.dispose(); // evita leak do flood
     }
 
     public static void salvarFrame(BufferedImage img) {
@@ -34,7 +34,7 @@ public class Renderizacao {
             e.printStackTrace();
         }
     }
-
+    //renderização final da imagem que será retornanda
     public static void salvarFinal(BufferedImage img) throws Exception {
         ImageIO.write(img, "png", new File("saida.png"));
     }
